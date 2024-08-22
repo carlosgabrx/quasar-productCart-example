@@ -26,7 +26,13 @@
               <q-btn icon="delete" flat color="negative" @click="removeCartItem(item.id)" />
             </q-item-section>
           </q-item>
+          <q-item>
+      <q-item-section>
+        <q-item-label><strong>Total:</strong> R$ {{ cartTotal }}</q-item-label>
+      </q-item-section>
+    </q-item>
         </q-list>
+        
         <div v-else class="text-subtitle2">Seu carrinho está vazio</div>
       </q-card-section>
 
@@ -47,6 +53,9 @@ const cartStore = useCartStore();
 // Computed para pegar os itens do carrinho diretamente da store
 const cartItems = computed(() => cartStore.getCartItems);
 
+// Computed para calcular o total do carrinho
+const cartTotal = computed(() => cartStore.cartTotal);
+
 // Função para atualizar a quantidade de itens no carrinho
 const updateCartItem = (productId, quantity) => {
   cartStore.updateQuantity(productId, quantity);
@@ -56,6 +65,7 @@ const updateCartItem = (productId, quantity) => {
 const removeCartItem = (productId) => {
   cartStore.removeFromCart(productId);
 };
+
 
 // Função para formatar o valor para moeda
 const formatCurrency = (value) => {
