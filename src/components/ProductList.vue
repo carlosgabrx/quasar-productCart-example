@@ -15,12 +15,16 @@
   
   <script setup>
   import { useProductStore } from 'stores/productStore';
+  import { useCartStore } from 'stores/cartStore';
   
   const productStore = useProductStore();
+  const cartStore = useCartStore();
+  
   productStore.loadProducts();
   
   const products = productStore.products;
+  
   const addToCart = (product) => {
-    productStore.addProductToCart(product);
+    cartStore.addToCart(product);
   };
   </script>  
